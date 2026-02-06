@@ -1,0 +1,53 @@
+server:
+  port: 7777
+spring:
+  application:
+    name: Edu Food
+
+  datasource:
+    url: jdbc:h2:./db/edu_food;AUTO_SERVER=TRUE
+    username: edu
+    password: food
+    driver-class-name: org.h2.Driver
+
+  liquibase:
+    change-log: classpath:/db/changelog/master.yaml
+
+  mvc:
+    static-path-pattern: /static/**
+    log-request-details: true
+
+  freemarker:
+    expose-session-attributes: true
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  mail:
+    host: smtp.gmail.com
+    username: ${EMAIL_SERVER_USERNAME}
+    password: ${EMAIL_SERVER_PASSWORD}
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        security: debug
+      hibernate:
+        stat: error
+        type: error
+    sql: error
+    web: error
+  pattern:
+    file: '%d{yyyy-MM-dd HH:mm:ss} %logger{36} - %msg%n'
+  file:
+    path: logs

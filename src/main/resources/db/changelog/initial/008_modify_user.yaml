@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008
+      author: Albert G.
+      changes:
+        - addColumn:
+            tableName: users_table
+            columns:
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_to_role
+                    references: roles(id)
